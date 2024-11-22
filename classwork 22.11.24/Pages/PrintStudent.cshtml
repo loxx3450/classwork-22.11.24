@@ -1,0 +1,42 @@
+﻿@page
+@model classwork_22._11._24.Pages.PrintStudentModel
+@{
+	ViewData["Title"] = "PrintStudent";
+}
+
+<style>
+    
+    * div
+    {
+        font-size: 24px;
+        margin: 5px 0px;
+    }
+
+</style>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="form-group">
+            <label class="control-label">Id:</label>
+            <strong>@Model.Book.Id</strong>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Title:</label>
+            <strong>@Model.Book.Title</strong>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Full name of Author:</label>
+            <strong>@Model.Book.AuthorFullName</strong>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Publishing house:</label>
+            <strong>@Model.Book.PublishingHouse</strong>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Published in:</label>
+            <strong>@Model.Book.PublishedIn</strong>
+        </div>
+    </div>
+
+    <a class="btn btn-primary" asp-page-handler="Return"/>Back to all Books</a>
+</div>
