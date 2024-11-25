@@ -22,10 +22,12 @@
                     <td>@Model.Books[i].Title</td>
                     <td>@Model.Books[i].AuthorFullName</td>
                     <td>
-                        <a class="btn btn-primary" asp-page="PrintStudent" asp-route-id="@Model.Books[i].Id">Show Full Info</a>
+                        <a class="btn btn-primary" asp-page="Book" asp-route-id="@Model.Books[i].Id">Show Full Info</a>
                     </td>
                 </tr>
             }
         </tbody>
     </table>
+
+    <a class="btn btn-secondary" asp-page-handler="AddBook">Add Book</a>
 </div>

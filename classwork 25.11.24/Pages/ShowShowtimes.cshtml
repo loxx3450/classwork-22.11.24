@@ -1,0 +1,30 @@
+﻿@page
+@model classwork_22._11._24.Pages.ShowShowtimesModel
+@{
+}
+
+<div class="text-center">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th></th>
+                <th>StartsAt</th>
+                <th>EndsAt</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < Model.Showtimes.Count; i++)
+            {
+                <tr>
+                    <td>@Model.Showtimes[i].Id</td>
+                    <td>@Model.Showtimes[i].StartsAt</td>
+                    <td>@Model.Showtimes[i].EndsAt</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>

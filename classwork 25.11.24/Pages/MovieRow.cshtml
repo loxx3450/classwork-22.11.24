@@ -1,0 +1,12 @@
+﻿@model classwork_25._11._24.Models.Movie
+
+<tr>
+    <td>@Model.Id</td>
+    <td>@Model.Title</td>
+    <td>@Model.Director</td>
+    <td>@Model.Genre</td>
+    <td>@Model.Description</td>
+    <td>
+        <a asp-page="ShowShowtimes" asp-route-id="@Model.Id">Show Showtimes</a>
+    </td>
+</tr>

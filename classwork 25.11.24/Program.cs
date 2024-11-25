@@ -1,19 +1,13 @@
+using classwork_25._11._24.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using RazorPagesTestApp.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddDbContext<RazorPagesTestAppContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("RazorPagesTestAppContext") ?? throw new InvalidOperationException("Connection string 'RazorPagesTestAppContext' not found.")));
+builder.Services.AddDbContext<DataContext>(options =>
+    options.UseNpgsql("Host=localhost;Database=cinemaDb;Username=postgres;Password=local;"));
 
-builder.Services.AddSession(opt =>
-{
-    opt.IdleTimeout = TimeSpan.FromHours(10);
-    opt.Cookie.IsEssential = true;
-    opt.Cookie.HttpOnly = true;
-});
 
 var app = builder.Build();
 
@@ -29,8 +23,6 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
-app.UseSession();
 
 app.UseAuthorization();
 

@@ -16,15 +16,24 @@ namespace RazorPagesTestApp.Pages
         {
             _logger = logger;
             _context = context;
-            Students = new List<Student>();
+            Students = new List<StudentRowModel>();
         }
 
         [BindProperty]
-        public List<Student> Students { get; set; } = new();
+        public List<StudentRowModel> Students { get; set; } = new();
 
         public async Task<IActionResult> OnGetAsync()
         {
-            Students = await _context.Student.ToListAsync();
+            if (HttpContext.Session.GetString("nickname") == null)
+            {
+                return RedirectToPage("Login");
+            }
+
+            Students = await _context.Student
+                .Select(s => new StudentRowModel()
+                {
+                    Student = s
+                }).ToListAsync();
             return Page();
         }
 
@@ -32,11 +41,11 @@ namespace RazorPagesTestApp.Pages
         {
             foreach (var student in Students)
             {
-                var studentFromDb = await _context.Student.FindAsync(student.Id);
-                studentFromDb.PresenceType = student.PresenceType;
-                studentFromDb.IsOnline = student.IsOnline;
-                studentFromDb.Grade = student.Grade;
-                studentFromDb.DiamondCount = student.DiamondCount;
+                var studentFromDb = await _context.Student.FindAsync(student.Student.Id);
+                studentFromDb.PresenceType = student.Student.PresenceType;
+                studentFromDb.IsOnline = student.Student.IsOnline;
+                studentFromDb.Grade = student.Student.Grade;
+                studentFromDb.DiamondCount = student.Student.DiamondCount;
             }
 
             await _context.SaveChangesAsync();

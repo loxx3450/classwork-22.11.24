@@ -1,0 +1,28 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Title</th>
+                <th>Director</th>
+                <th>Genre</th>
+                <th>Description</th>
+                <th>Showtimes</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 0; i < Model.Movies.Count; i++)
+            {
+                <tr>
+                    <partial name="MovieRow.cshtml" model="@Model.Movies[i]"/>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

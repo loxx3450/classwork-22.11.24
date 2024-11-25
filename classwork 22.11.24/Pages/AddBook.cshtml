@@ -1,0 +1,50 @@
+﻿@page
+@model classwork_22._11._24.Pages.AddBookModel
+
+@{
+    ViewData["Title"] = "AddBook";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>AddBook</h1>
+
+<h4>Book</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Book.Title" class="control-label"></label>
+                <input asp-for="Book.Title" class="form-control" />
+                <span asp-validation-for="Book.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Book.AuthorFullName" class="control-label"></label>
+                <input asp-for="Book.AuthorFullName" class="form-control" />
+                <span asp-validation-for="Book.AuthorFullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Book.PublishingHouse" class="control-label"></label>
+                <input asp-for="Book.PublishingHouse" class="form-control" />
+                <span asp-validation-for="Book.PublishingHouse" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Book.PublishedIn" class="control-label"></label>
+                <input asp-for="Book.PublishedIn" class="form-control" />
+                <span asp-validation-for="Book.PublishedIn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
