@@ -4,30 +4,61 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th></th>
-                <th>Title</th>
-                <th>Full Name of Author</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @for (int i = 0; i < Model.Books.Count; i++)
-            {
-                <tr>
-                    <td>@Model.Books[i].Id</td>
-                    <td>@Model.Books[i].Title</td>
-                    <td>@Model.Books[i].AuthorFullName</td>
-                    <td>
-                        <a class="btn btn-primary" asp-page="Book" asp-route-id="@Model.Books[i].Id">Show Full Info</a>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+<style>
 
-    <a class="btn btn-secondary" asp-page-handler="AddBook">Add Book</a>
+    form div {
+        margin: 10px 0px
+    }
+
+</style>
+
+<div>
+    <div class="col-md-4">
+        <form>
+        
+            <div class="form-group">
+                <label>Title: <input type="text" asp-for="TitlePattern" /></label>
+            </div>
+            <div class ="form-group">
+                <label>Author: <input type="text" asp-for="AuthorPattern" /></label>
+            </div>
+            <div class="form-group">
+                <input class="btn btn-outline-primary" type="submit" value="Filter" />
+                <a class="btn btn-outline-danger" asp-page-handler="ResetFilter">Reset</a>
+            </div>
+
+
+        </form>
+    </div>
+
+    <div class="text-center">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Title</th>
+                    <th>Full Name of Author</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Books.Count; i++)
+                {
+                    <tr>
+                        <td>@Model.Books[i].Id</td>
+                        <td>@Model.Books[i].Title</td>
+                        <td>@Model.Books[i].AuthorFullName</td>
+                        <td>
+                            <a class="btn btn-outline-secondary" asp-page="Book" asp-route-id="@Model.Books[i].Id">Show Full Info</a>
+                            <a class="btn btn-outline-primary" asp-page="EditBook" asp-route-id="@Model.Books[i].Id">Edit</a>
+                            <a class="btn btn-outline-danger" asp-page="DeleteBook" asp-route-id="@Model.Books[i].Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <a class="btn btn-outline-primary" asp-page-handler="AddBook">Add Book</a>
+    </div>
+    
 </div>
